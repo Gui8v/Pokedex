@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springmongo.entities.Pessoa;
-import com.example.springmongo.repositories.PessoaRepository;
+import com.example.springmongo.entities.Type;
+import com.example.springmongo.repositories.TypeRepository;
 
 @Service
-public class PessoaService {
+public class TypeService {
 	
 	@Autowired
-	private PessoaRepository repository;
+	private TypeRepository repository;
 	
-	public List<Pessoa> findAll(){
+	public List<Type> findAll(){
 		
 		return repository.findAll();
 	}

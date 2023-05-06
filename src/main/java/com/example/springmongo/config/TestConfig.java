@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.springmongo.entities.Pessoa;
+import com.example.springmongo.entities.Type;
 import com.example.springmongo.repositories.PessoaRepository;
+import com.example.springmongo.repositories.TypeRepository;
 
 @Configuration
 @Profile("test")
@@ -16,6 +18,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private TypeRepository typeRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -23,6 +28,12 @@ public class TestConfig implements CommandLineRunner {
 		Pessoa p1 = new Pessoa(null, "Carlin");
 		Pessoa p2 = new Pessoa(null, "Jorjin");
 		
+		Type t1 = new Type(null, "Grass", "Green");
+		Type t2 = new Type(null, "Water", "Blue");
+		Type t3 = new Type(null, "Fire", "Red");
+		
 		pessoaRepository.saveAll(Arrays.asList(p1, p2));
+		
+		typeRepository.saveAll(Arrays.asList(t1, t2, t3));
 	}
 }
