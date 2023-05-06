@@ -10,44 +10,52 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_pessoa")
-public class Pessoa implements Serializable {
+@Table(name = "tb_pokemon")
+public class Pokemon implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String name;
+	private String description;
 	
-	public  Pessoa () {
+	public  Pokemon () {
 	}
-	
-	public Pessoa(Long id, String nome) {
+			
+	public Pokemon(Long id, String name, String description) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.name = name;
+		this.description = description;
 	}
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-
-		this.nome = nome;
-	}	
-
+	
 	@Override
 	public int hashCode() {
-
-		return Objects.hash(id);
+		return Objects.hash(description);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,9 +64,8 @@ public class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
-		return Objects.equals(id, other.id);
-	} 
-	
+		Pokemon other = (Pokemon) obj;
+		return Objects.equals(description, other.description);
+	}
 	
 }
