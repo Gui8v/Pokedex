@@ -3,10 +3,12 @@ package com.example.springmongo.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,7 +22,7 @@ public class Pokemon implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	
+		
 	public  Pokemon () {
 	}
 			
@@ -50,7 +52,6 @@ public class Pokemon implements Serializable {
 		this.description = description;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(description);
