@@ -1,11 +1,16 @@
 package com.example.springmongo.entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +22,10 @@ public class Type {
 	private Long id;
 	private String name;
 	private String color;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "types")
+	private Set<Pokemon> Pokemons = new HashSet<>();
 	
 	public  Type () {
 	}
@@ -51,6 +60,11 @@ public class Type {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+	
+	@JsonIgnore
+	public Set<Pokemon> getPokemons() {
+		return Pokemons;
 	}
 
 	

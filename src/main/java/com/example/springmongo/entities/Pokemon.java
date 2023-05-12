@@ -1,14 +1,19 @@
 package com.example.springmongo.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +27,10 @@ public class Pokemon implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_pokemon_type", joinColumns = @JoinColumn(name = "pokemon_id"), inverseJoinColumns = @JoinColumn(name = "type_id"))
+	private Set<Type> types = new HashSet<>();
 		
 	public  Pokemon () {
 	}
@@ -50,7 +59,12 @@ public class Pokemon implements Serializable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}	
+	
+	public Set<Type> getTypes() {
+		return types;
 	}
+
 
 	@Override
 	public int hashCode() {

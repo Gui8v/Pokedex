@@ -33,16 +33,21 @@ public class TestConfig implements CommandLineRunner {
 		Pessoa p1 = new Pessoa(null, "Carlin");
 		Pessoa p2 = new Pessoa(null, "Jorjin");
 		
+		pessoaRepository.saveAll(Arrays.asList(p1, p2));
+		
 		Type t1 = new Type(null, "Grass", "Green");
 		Type t2 = new Type(null, "Water", "Blue");
 		Type t3 = new Type(null, "Fire", "Red");
+		Type t4 = new Type(null, "normal", "white");
+		
+		typeRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 		
 		Pokemon pk1 = new Pokemon(null, "Pikaku", "Pikatiu!");
-		
-		pessoaRepository.saveAll(Arrays.asList(p1, p2));
-		
-		typeRepository.saveAll(Arrays.asList(t1, t2, t3));
+		pk1.getTypes().add(t2);
+		pk1.getTypes().add(t4);
+
 		
 		pokemonRepository.saveAll(Arrays.asList(pk1));
+		
 	}
 }
