@@ -27,4 +27,15 @@ public class PokemonService {
 	public Pokemon insert(Pokemon obj) {
 		return repository.save(obj);
 	}
+	
+	public Pokemon update(long id, Pokemon 	pokemon) {
+		Pokemon entity = repository.getReferenceById(id);
+		updateData(entity, pokemon);
+		return repository.save(entity);
+	}
+
+	private void updateData(Pokemon entity, Pokemon pokemon) {
+		entity.setName(pokemon.getName());
+		entity.setDescription(pokemon.getDescription());
+	}	
 }

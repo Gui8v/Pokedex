@@ -42,12 +42,16 @@ public class TestConfig implements CommandLineRunner {
 		
 		typeRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 		
-		Pokemon pk1 = new Pokemon(null, "Pikaku", "Pikatiu!");
-		pk1.getTypes().add(t2);
-		pk1.getTypes().add(t4);
-
+		Pokemon pk1 = new Pokemon(null, "bulbasaur", "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.");
+		pk1.getTypes().add(t1);
 		
-		pokemonRepository.saveAll(Arrays.asList(pk1));
+		Pokemon pk2 = new Pokemon(null, "squirtle", "When it retracts its long neck into its shell, it squirts out water with vigorous force.");
+		pk2.getTypes().add(t2);
+		
+		Pokemon pk3 = new Pokemon(null, "charmander", "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.");
+		pk3.getTypes().addAll(Arrays.asList(t1, t2, t3));
+	
+		pokemonRepository.saveAll(Arrays.asList(pk1, pk2, pk3));
 		
 	}
 }
