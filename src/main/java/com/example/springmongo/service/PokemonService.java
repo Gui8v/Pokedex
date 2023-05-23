@@ -33,10 +33,16 @@ public class PokemonService {
 		updateData(entity, pokemon);
 		return repository.save(entity);
 	}
+	
+	public void delete(long id) {
+		 repository.deleteById(id);
+	}
 
 	private void updateData(Pokemon entity, Pokemon pokemon) {
 		entity.setName(pokemon.getName());
 		entity.setDescription(pokemon.getDescription());
 		entity.setTypes(pokemon.getTypes());
 	}	
+	
+	
 }
