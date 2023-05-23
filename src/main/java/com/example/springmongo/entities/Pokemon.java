@@ -63,6 +63,10 @@ public class Pokemon implements Serializable {
 		return types;
 	}
 
+	public void setTypes(Set<Type> types) {
+		this.types = types;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(description);

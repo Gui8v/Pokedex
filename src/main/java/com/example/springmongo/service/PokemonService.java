@@ -37,5 +37,6 @@ public class PokemonService {
 	private void updateData(Pokemon entity, Pokemon pokemon) {
 		entity.setName(pokemon.getName());
 		entity.setDescription(pokemon.getDescription());
+		entity.setTypes(pokemon.getTypes());
 	}	
 }
