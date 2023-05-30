@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.springmongo.entities.Pokemon;
 import com.example.springmongo.repositories.PokemonRepository;
+import com.example.springmongo.service.exception.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class PokemonService {
@@ -21,7 +24,7 @@ public class PokemonService {
 	
 	public Pokemon findById(long id) {
 		Optional<Pokemon> obj = repository.findById(id);
-			return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Pokemon insert(Pokemon obj) {
@@ -29,9 +32,16 @@ public class PokemonService {
 	}
 	
 	public Pokemon update(long id, Pokemon 	pokemon) {
-		Pokemon entity = repository.getReferenceById(id);
-		updateData(entity, pokemon);
-		return repository.save(entity);
+		try {
+			
+			Pokemon entity = repository.getReferenceById(id);
+			updateData(entity, pokemon);
+			return repository.save(entity);
+			
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+		
 	}
 	
 	public void delete(long id) {
